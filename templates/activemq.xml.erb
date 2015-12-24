@@ -23,7 +23,7 @@
             <managementContext createConnector="<%= @create_management_connector %>"/>
         </managementContext>
 
-<% if @additional_broker_content -%>
+<% if @additional_broker_content != '' -%>
   <% @additional_broker_content -%>
 <% end -%>
 
