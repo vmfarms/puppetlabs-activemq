@@ -20,8 +20,12 @@
     <broker xmlns="http://activemq.apache.org/schema/core" brokerName="<%= @mq_broker_name %>" useJmx="true" dataDirectory="${activemq.data}">
 <% end -%>
         <managementContext>
-            <managementContext createConnector="false"/>
+            <managementContext createConnector="<%= @create_management_connector %>"/>
         </managementContext>
+
+<% if @additional_broker_content != '' -%>
+  <%= @additional_broker_content -%>
+<% end -%>
 
 <% if @mq_cluster_brokers_real.length > 1 -%>
         <!--
