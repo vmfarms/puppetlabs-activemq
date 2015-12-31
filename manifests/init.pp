@@ -25,24 +25,30 @@
 # }
 #
 class activemq(
-  $version                 = $activemq::params::version,
-  $package                 = $activemq::params::package,
-  $ensure                  = $activemq::params::ensure,
-  $instance                = $activemq::params::instance,
-  $webconsole              = $activemq::params::webconsole,
-  $server_config           = $activemq::params::server_config,
-  $server_config_show_diff = $activemq::params::server_config,
-  $mq_broker_name          = $activemq::params::mq_broker_name,
-  $mq_admin_username       = $activemq::params::mq_admin_username,
-  $mq_admin_password       = $activemq::params::mq_admin_password,
-  $mq_cluster_username     = $activemq::params::mq_cluster_username,
-  $mq_cluster_password     = $activemq::params::mq_cluster_password,
-  $mq_cluster_brokers      = $activemq::params::mq_cluster_brokers,
+  $version                     = $activemq::params::version,
+  $package                     = $activemq::params::package,
+  $ensure                      = $activemq::params::ensure,
+  $instance                    = $activemq::params::instance,
+  $webconsole                  = $activemq::params::webconsole,
+  $server_config               = $activemq::params::server_config,
+  $server_config_show_diff     = $activemq::params::server_config,
+  $mq_broker_name              = $activemq::params::mq_broker_name,
+  $mq_admin_username           = $activemq::params::mq_admin_username,
+  $mq_admin_password           = $activemq::params::mq_admin_password,
+  $mq_cluster_username         = $activemq::params::mq_cluster_username,
+  $mq_cluster_password         = $activemq::params::mq_cluster_password,
+  $mq_cluster_brokers          = $activemq::params::mq_cluster_brokers,
+  $create_management_connector = $activemq::params::create_management_connector,
+  $additional_broker_content   = $activemq::params::additional_broker_content,
 ) inherits activemq::params {
 
   validate_re($ensure, '^running$|^stopped$')
   validate_re($version, '^present$|^latest$|^[~+._0-9a-zA-Z:-]+$')
   validate_bool($webconsole)
+  validate_bool($create_management_connector)
+  if $additional_broker_content {
+    validate_string($additional_broker_content)
+  }
 
   $package_real = $package
   $version_real = $version

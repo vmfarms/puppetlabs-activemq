@@ -63,6 +63,7 @@ class activemq::config (
     group   => 'activemq',
     mode    => '0600',
     content => $server_config_real,
+    notify => Class['activemq::service'],
   }
 
 }
