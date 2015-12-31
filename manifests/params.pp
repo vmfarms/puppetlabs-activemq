@@ -14,7 +14,7 @@ class activemq::params {
   $mq_cluster_password     = 'secret'
   $mq_cluster_brokers      = []
   $create_management_connector = false
-  $additional_broker_content   = ''
+  $additional_broker_content   = undef
 
   # Debian does not include the webconsole
   case $::osfamily {

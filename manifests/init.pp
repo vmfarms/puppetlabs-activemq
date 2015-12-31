@@ -46,6 +46,9 @@ class activemq(
   validate_re($version, '^present$|^latest$|^[~+._0-9a-zA-Z:-]+$')
   validate_bool($webconsole)
   validate_bool($create_management_connector)
+  if $additional_broker_content {
+    validate_string($additional_broker_content)
+  }
 
   $package_real = $package
   $version_real = $version
